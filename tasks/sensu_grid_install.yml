@@ -1,9 +1,10 @@
 ---
-- name: Install Uchiwa
+- name: Install sensu grid packages
   apt:
-    name: "{{ uchiwa_apt_package }}"
+    name: "{{ item }}"
     state: present
     update_cache: yes
+  with_items: "{{ sensu_grid_apt_packages }}"
 
 - name: Check to see if pip is already installed.
   command: pip --version
