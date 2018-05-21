@@ -10,5 +10,4 @@ sensu_grid_startup_scripts_path: "{{ sensu_grid_config_path }}/start-scripts"
 sensu_grid_upstart_file_path: /etc/init/sensu-grid.conf
 sensu_grid_systemd_file_path: /lib/systemd/system/sensu-grid.service
 
-sensu_grid_apt_key_url: https://sensu.global.ssl.fastly.net/apt/pubkey.gpg
-sensu_grid_apt_repo: "deb https://sensu.global.ssl.fastly.net/apt {{ ansible_lsb.codename | lower }} main"
+sensu_grid_user: sensu-grid
