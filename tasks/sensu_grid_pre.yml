@@ -2,7 +2,7 @@
 - name: Clone sensu grid repository
   git:
     repo: "{{ sensu_grid_repo }}"
-    dest: "{{ sensu_grid_config_path }}"
+    dest: "{{ sensu_grid_base_path }}"
     clone: yes
 
 - name: Create {{ sensu_grid_user }} user

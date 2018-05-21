@@ -1,4 +1,5 @@
 ---
 sensu_grid_repo: https://github.com/alex-leonhardt/sensu-grid.git
 
-sensu_grid_apt_packages: []
+sensu_grid_apt_packages:
+  - upstart

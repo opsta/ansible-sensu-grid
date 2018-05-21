@@ -18,7 +18,7 @@
 
 - name: Install python dependecies via pip requirements
   pip:
-    requirements: "{{ sensu_grid_config_path }}/requirements.txt"
+    requirements: "{{ sensu_grid_base_path }}/requirements.txt"
 
 
 

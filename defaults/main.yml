@@ -1,11 +1,12 @@
 ---
-sensu_grid_search_config_path: "{{ playbook_dir }}/files/groups/{{ item }}/grid"
+sensu_grid_search_config_path: "{{ playbook_dir }}/files/groups/{{ item }}/sensu-grid"
 sensu_grid_search_config_paths: []
 
-sensu_grid_host_config_file_path: "{{ sensu_grid_host_config_path | default(inventory_hostname) }}/config.yml.j2"
-sensu_grid_config_path: /etc/sensu-grid
-sensu_grid_config_file_path: "{{ sensu_grid_config_path }}/config.yml"
-sensu_grid_startup_scripts_path: "{{ sensu_grid_config_path }}/start-scripts"
+sensu_grid_host_config_file_path: "{{ sensu_grid_host_config_path | default(inventory_hostname) }}/config.yaml.j2"
+sensu_grid_base_path: /opt/sensu-grid 
+sensu_grid_startup_scripts_path: "{{ sensu_grid_base_path }}/start-scripts"
+sensu_grid_config_path: "{{ sensu_grid_base_path }}/conf"
+sensu_grid_config_file_path: "{{ sensu_grid_config_path }}/config.yaml"
 
 sensu_grid_upstart_file_path: /etc/init/sensu-grid.conf
 sensu_grid_systemd_file_path: /lib/systemd/system/sensu-grid.service
