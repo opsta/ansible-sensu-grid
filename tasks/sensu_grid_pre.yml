@@ -12,12 +12,12 @@
 
 - name: Prepare startup configuration file
   copy:
-    src: "{{ sensu_grid_config_startup_path }}/sensu-grid.conf"
+    src: "{{ sensu_grid_startup_scripts_path }}/sensu-grid.conf"
     dest: "{{ sensu_grid_upstart_file_path }}"
     remote_src: yes
 
 - name: Prepare systemd configuration file 
   copy:
-    src: "{{ sensu_grid_config_startup_path }}/sensu-grid.service.unit"
+    src: "{{ sensu_grid_startup_scripts_path }}/sensu-grid.service.unit"
     dest: "{{ sensu_grid_systemd_file_path }}"
     remote_src: yes
