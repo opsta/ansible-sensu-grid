@@ -1,0 +1,5 @@
+---
+- name: Restart Sensu Grid
+  service:
+    name: sensu-grid
+    state: restarted

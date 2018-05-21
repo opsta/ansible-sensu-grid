@@ -1,0 +1,30 @@
+---
+- name: Set list of path to look for local sensu grid configuration directory
+  set_fact:
+    sensu_grid_search_config_paths: "{{ sensu_grid_search_config_paths }} + [ '{{ sensu_grid_search_config_path }}' ]"
+  with_items: "{{ group_names }}"
+
+- name: Check if sensu grid configuration directory exists
+  stat:
+    path: "{{ item }}"
+  register: sensu_grid_config_check
+  become: false
+  delegate_to: 127.0.0.1
+  with_first_found:
+    - files: "{{ sensu_grid_search_config_paths }}"
+      skip: true
+
+- name: Set sensu grid configuration directory
+  set_fact:
+    sensu_grid_host_config_path: "{{ sensu_grid_config_check.results[0].stat.path }}"
+  when:
+    - sensu_grid_config_check.results[0] is defined
+    - sensu_grid_config_check.results[0].stat is defined
+    - sensu_grid_config_check.results[0].stat.isdir
+
+- name: Check if sensu grid template configuration file is exists
+  stat:
+    path: "{{ sensu_grid_host_config_file_path }}"
+  become: false
+  delegate_to: 127.0.0.1
+  register: sensu_grid_config_check

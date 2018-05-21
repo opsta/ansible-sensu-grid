@@ -1,0 +1,23 @@
+---
+- name: Install Uchiwa
+  apt:
+    name: "{{ uchiwa_apt_package }}"
+    state: present
+    update_cache: yes
+
+- name: Check to see if pip is already installed.
+  command: pip --version
+  ignore_errors: true
+  changed_when: false
+  register: install_pip_is_installed
+
+- name: Install pip if not installed
+  shell: curl https://bootstrap.pypa.io/get-pip.py | python
+  when: install_pip_is_installed.rc != 0
+
+- name: Install python dependecies via pip requirements
+  pip:
+    requirements: "{{ sensu_grid_config_path }}/requirements.txt"
+
+
+

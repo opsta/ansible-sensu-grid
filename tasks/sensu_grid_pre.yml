@@ -1,0 +1,23 @@
+---
+- name: Clone sensu grid repository
+  git:
+    repo: "{{ sensu_grid_repo }}"
+    dest: "{{ sensu_grid_config_path }}"
+    clone: yes
+
+- name: Create {{ sensu_grid_user }} user
+  user:
+    name: "{{ sensu_grid_user }}"
+    system: yes
+
+- name: Prepare startup configuration file
+  copy:
+    src: "{{ sensu_grid_config_startup_path }}/sensu-grid.conf"
+    dest: "{{ sensu_grid_upstart_file_path }}"
+    remote_src: yes
+
+- name: Prepare systemd configuration file 
+  copy:
+    src: "{{ sensu_grid_config_startup_path }}/sensu-grid.service.unit"
+    dest: "{{ sensu_grid_systemd_file_path }}"
+    remote_src: yes

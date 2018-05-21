@@ -1,0 +1,10 @@
+---
+- name: Copy sensu grid configuration file
+  template:
+    src: "{{ sensu_grid_host_config_file_path }}"
+    dest: "{{ sensu_grid_config_file_path }}"
+    owner: sensu-grid
+    group: sensu-grid
+    mode: 0644
+  when: sensu_grid_config_check.stat.exists
+  notify: Restart Sensu Grid
